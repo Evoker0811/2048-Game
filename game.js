@@ -30,11 +30,9 @@ function drawBoard() {
 
     for (let i = 0; i < size; i++) {
         for (let j = 0; j < size; j++) {
-
             const cell = document.createElement("div");
             cell.className = "cell value-" + board[i][j];
             cell.textContent = board[i][j] === 0 ? "" : board[i][j];
-
             grid.appendChild(cell);
         }
     }
@@ -74,11 +72,6 @@ function rotateLeft(matrix) {
     return res;
 }
 
-function showOverlay(text) {
-    document.getElementById("message").textContent = text;
-    document.getElementById("overlay").classList.remove("hidden");
-}
-
 function checkWin() {
     for (let i = 0; i < size; i++)
         for (let j = 0; j < size; j++)
@@ -100,9 +93,14 @@ function checkLose() {
     return true;
 }
 
+function showOverlay(text) {
+    document.getElementById("message").textContent = text;
+    document.getElementById("overlay").classList.add("show");
+}
+
 function move(dir) {
     if (gameOver) return;
-	let old = JSON.parse(JSON.stringify(board));
+    let old = JSON.parse(JSON.stringify(board));
 
     if (dir === "left") {
         for (let i = 0; i < size; i++)
@@ -138,17 +136,16 @@ function move(dir) {
 
     drawBoard();
 
-	if (checkWin()) {
-    		showOverlay("YOU WIN!");
-    		gameOver = true;
-		return;
-	}
+    if (checkWin()) {
+        showOverlay("YOU WIN!");
+        gameOver = true;
+        return;
+    }
 
-	if (checkLose()) {
-    		showOverlay("GAME OVER!");
-    		gameOver = true;
-	}
-
+    if (checkLose()) {
+        showOverlay("GAME OVER!");
+        gameOver = true;
+    }
 }
 
 document.addEventListener("keydown", e => {
@@ -159,6 +156,3 @@ document.addEventListener("keydown", e => {
 });
 
 window.onload = initBoard;
-
-
-
