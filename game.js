@@ -82,12 +82,10 @@ function checkWin() {
 }
 
 function checkLose() {
-    // còn ô trống thì chưa thua
     for (let i = 0; i < size; i++)
         for (let j = 0; j < size; j++)
             if (board[i][j] === 0) return false;
 
-    // còn merge được không
     for (let i = 0; i < size; i++)
         for (let j = 0; j < size; j++) {
             if (i < size - 1 && board[i][j] === board[i + 1][j]) return false;
@@ -156,4 +154,5 @@ document.addEventListener("keydown", e => {
 });
 
 window.onload = initBoard;
+
 
