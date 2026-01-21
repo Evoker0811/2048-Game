@@ -74,6 +74,11 @@ function rotateLeft(matrix) {
     return res;
 }
 
+function showOverlay(text) {
+    document.getElementById("message").textContent = text;
+    document.getElementById("overlay").classList.remove("hidden");
+}
+
 function checkWin() {
     for (let i = 0; i < size; i++)
         for (let j = 0; j < size; j++)
@@ -134,13 +139,13 @@ function move(dir) {
     drawBoard();
 
 	if (checkWin()) {
-    		alert("YOU WIN!");
+    		showOverlay("YOU WIN!");
     		gameOver = true;
 		return;
 	}
 
 	if (checkLose()) {
-    		alert("GAME OVER!");
+    		showOverlay("GAME OVER!");
     		gameOver = true;
 	}
 
@@ -154,5 +159,6 @@ document.addEventListener("keydown", e => {
 });
 
 window.onload = initBoard;
+
 
 
